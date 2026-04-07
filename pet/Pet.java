@@ -1,83 +1,58 @@
 package pet;
-package food;
 
+import food.Food;
 
-
-class Pet {
+public class Pet {
 
     private String name;
     private int hunger;
-    private int happinness;
+    private int happiness;
     private int energy;
-    private int healt;
+    private int health;
 
-    public Pet(String name, int hunger, int happinness, int energy, int heal) {
+    public Pet(String name, int hunger, int happiness, int energy, int health) {
         this.name = name;
         this.hunger = hunger;
-        this.happinness = happinness;
+        this.happiness = happiness;
         this.energy = energy;
-        this.healt = healt;
+        this.health = health;
     }
 
     public void feed(Food f) {
-        
-        if(this.hunger >= 100){
-            hunger = 100;
+
+        System.out.println(name + " makan " + f.getName());
+
+        hunger -= f.getNutritionValue();
+
+        if (hunger >= 90) {
+            health -= 5;
         }
 
-        if(this.hunger == 0 ){
-            System.out.println("yah mati deh");
+        if (hunger < 0) {
+            hunger = 0;
         }
-        hunger = hunger - 50;
     }
 
     public void play() {
-
-        
-        if(this.happinness == 100){
-            happinness = 100;
-        }
-
-        if(this.happinness == 0){
-            System.out.println("hewan mu sudah megang tali tambang");
-        }
-
-        if(this.energy == 100){
-            energy = 100;
-        }
-
-        if(this.energy == 0){
-            System.out.println("hewanmu terkapar malas");
-        }
-
-        happinness = happinness + 50;
-        energy = energy - 50;
+        happiness += 10;
+        energy -= 10;
     }
 
-    public void sleep() {        
-        hunger = hunger - 10;
-        happinness = happinness + 50;
+    public void sleep() {
+        energy += 20;
     }
 
-    public void timePasses(){
+    public void timePasses() {
         hunger += 10;
-        happinness -= 5;
+        happiness -= 5;
         energy -= 5;
-    }
-
-    public void healt(){
-        
     }
 
     public void showStatus() {
         System.out.println("Nama : " + name);
-        System.out.println("Hunger :" + hunger);
-        System.out.println("Happiness :" + happinness);
+        System.out.println("Hunger : " + hunger);
+        System.out.println("Happiness : " + happiness);
         System.out.println("Energy : " + energy);
+        System.out.println("Health : " + health);
     }
-
-    public static void main(String[] args) {
-
-    }
-
 }

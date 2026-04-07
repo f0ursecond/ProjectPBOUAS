@@ -1,18 +1,22 @@
 package food;
 
+public class Food {
 
-class Food {
-    String name;
-    int nutritionValue;
-    int tastiness;
+    private String name;
+    private int nutritionValue;
+    private int tastiness;
 
-    public Food(String name, int nutritionValue, int tastiness){
+    public Food(String name, int nutritionValue, int tastiness) {
         this.name = name;
         this.nutritionValue = nutritionValue;
         this.tastiness = tastiness;
     }
 
-    public static void main(String[] args) {
-        
+    public int getNutritionValue() {
+        return nutritionValue;
+    }
+
+    public String getName() {
+        return name;
     }
 }
