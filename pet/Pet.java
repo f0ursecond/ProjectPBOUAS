@@ -50,9 +50,15 @@ public class Pet {
 
     public void showStatus() {
         System.out.println("Nama : " + name);
-        System.out.println("Hunger : " + hunger);
-        System.out.println("Happiness : " + happiness);
-        System.out.println("Energy : " + energy);
-        System.out.println("Health : " + health);
+        System.out.println("Hunger: " + hunger + "/100 " + createBar(hunger));
+        System.out.println("Happiness: " + happiness + "/100 " + createBar(happiness));
+        System.out.println("Energy: " + energy + "/100 " + createBar(energy));
+        System.out.println("Health: " + health + "/100 " + createBar(health));
+    }
+
+    private String createBar(int value) {
+        int filled = value / 10;
+        int empty = 10 - filled;
+        return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
     }
 }
