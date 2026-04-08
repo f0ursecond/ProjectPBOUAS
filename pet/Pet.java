@@ -34,15 +34,38 @@ public class Pet {
     }
 
     public void play() {
+        
+        System.out.println(name + " bermain ") ;
+
+        if (hunger >= 90) {
+            health -= 5;
+        }
+        
+        hunger += 20;
         happiness += 10;
         energy -= 10;
+
     }
 
     public void sleep() {
+
+        System.out.println(name + " tidur ") ;
+
+        if (hunger >= 90) {
+            health -= 5;
+        }
+
         energy += 20;
     }
 
     public void timePasses() {
+
+        System.out.println(" hari lewat ") ;
+        
+        if (hunger >= 90) {
+        health -= 5;
+        }
+
         hunger += 10;
         happiness -= 5;
         energy -= 5;
@@ -57,8 +80,11 @@ public class Pet {
     }
 
     private String createBar(int value) {
-        int filled = value / 10;
-        int empty = 10 - filled;
-        return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
+    value = Math.max(0, Math.min(100, value)); // batasi 0–100
+
+    int filled = value / 10;
+    int empty = 10 - filled;
+
+    return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
     }
 }
