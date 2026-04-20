@@ -23,7 +23,7 @@ public class Main {
         pet.showStatus();
         pet.sleep();
         pet.showStatus();
-       
+    
         
 
 
