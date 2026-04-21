@@ -2,6 +2,7 @@ package pet;
 
 import food.Food;
 
+
 public class Pet {
 
     protected String name;
@@ -18,34 +19,37 @@ public class Pet {
         this.health = health;
     }
 
+    protected int valAtt(int value){
+        if (value < 0) 
+            return 0;
+        if (value > 100)
+            return 100;
+        return value;
+    }
+
     public void feed(Food f) {
 
-        System.out.println(name + " makan " + f.getName());
-
-        hunger -= f.getNutritionValue();
+        hunger = valAtt(hunger - f.getNutritionValue());
+        energy = valAtt(energy + 5);
 
         if (hunger >= 90) {
-            health -= 5;
-        }
-
-        if (hunger < 0) {
-            hunger = 0;
+            health = valAtt(health - 5);
         }
     }
 
     public void play() {
-        happiness += 10;
-        energy -= 10;
+        happiness = valAtt(happiness + 10);
+        energy = valAtt(energy - 10);
     }
 
     public void sleep() {
-        energy += 20;
+        energy = valAtt(energy + 20);
     }
 
     public void timePasses() {
-        hunger += 10;
-        happiness -= 5;
-        energy -= 5;
+        hunger = valAtt(hunger + 10);
+        happiness = valAtt(happiness - 5);
+        energy = valAtt(energy - 5);
     }
 
     public void showStatus() {
@@ -63,44 +67,6 @@ public class Pet {
     }
 
 }
-class Cat extends Pet {
-    public Cat(String name){
-        super(name, 100, 100, 100, 100);        
-    }
-        @Override
-        public void timePasses(){
-            energy-=2;
-            System.out.println(name + "Kucing bosan energy berkurang sedikit" + energy);
-        }
-        
-        public void makanIkan(){
-            energy += 20;
-            hunger += 10;
-            System.out.println(name + " ikan diberikan, energi bertambah =" + energy);
-        }
-}
-class Dog extends Pet {
-    public Dog(String name){
-            super(name, 100, 100, 100, 100);        
-        }    
-            @Override
-            public void timePasses(){
-                happiness -= 30;
-                System.out.println(name + " sangat bosan, tingkat bahagia menurun: " + happiness);
-            }
-}
-class Bird extends Pet {
-    public Bird(String name){
-        super(name, 100, 100, 100, 100);        
-    }
-        @Override
-        public void timePasses(){
-            energy -=20;
-            System.out.println(name + " terbangg sangat aktif, energi terkuras cepat!! sisa: " + energy);
-        }
-        public void feed(){
-            hunger += 10;
-            energy += 10;
-            System.out.println(name + " makan biji, tingkat energy dan hunger sisa: " + hunger + energy);
-        }
-}
+
+
+
