@@ -2,13 +2,14 @@ package pet;
 
 import food.Food;
 
+
 public class Pet {
 
-    private String name;
-    private int hunger;
-    private int happiness;
-    private int energy;
-    private int health;
+    protected String name;
+    protected int hunger;
+    protected int happiness;
+    protected int energy;
+    protected int health;
 
     public Pet(String name, int hunger, int happiness, int energy, int health) {
         this.name = name;
@@ -18,57 +19,37 @@ public class Pet {
         this.health = health;
     }
 
+    protected int valAtt(int value){
+        if (value < 0) 
+            return 0;
+        if (value > 100)
+            return 100;
+        return value;
+    }
+
     public void feed(Food f) {
 
-        System.out.println(name + " makan " + f.getName());
-
-        hunger -= f.getNutritionValue();
+        hunger = valAtt(hunger - f.getNutritionValue());
+        energy = valAtt(energy + 5);
 
         if (hunger >= 90) {
-            health -= 5;
-        }
-
-        if (hunger < 0) {
-            hunger = 0;
+            health = valAtt(health - 5);
         }
     }
 
     public void play() {
-        
-        System.out.println(name + " bermain ") ;
-
-        if (hunger >= 90) {
-            health -= 5;
-        }
-        
-        hunger += 20;
-        happiness += 10;
-        energy -= 10;
-
+        happiness = valAtt(happiness + 10);
+        energy = valAtt(energy - 10);
     }
 
     public void sleep() {
-
-        System.out.println(name + " tidur ") ;
-
-        if (hunger >= 90) {
-            health -= 5;
-        }
-
-        energy += 20;
+        energy = valAtt(energy + 20);
     }
 
     public void timePasses() {
-
-        System.out.println(" hari lewat ") ;
-        
-        if (hunger >= 90) {
-        health -= 5;
-        }
-
-        hunger += 10;
-        happiness -= 5;
-        energy -= 5;
+        hunger = valAtt(hunger + 10);
+        happiness = valAtt(happiness - 5);
+        energy = valAtt(energy - 5);
     }
 
     public void showStatus() {
@@ -80,11 +61,12 @@ public class Pet {
     }
 
     private String createBar(int value) {
-    value = Math.max(0, Math.min(100, value)); // batasi 0–100
-
-    int filled = value / 10;
-    int empty = 10 - filled;
-
-    return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
+        int filled = value / 10;
+        int empty = 10 - filled;
+        return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
     }
+
 }
+
+
+
