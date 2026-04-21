@@ -70,7 +70,7 @@ class Cat extends Pet {
         @Override
         public void timePasses(){
             energy-=2;
-            System.out.println(name + "Kucing bosan energy berkurang" + energy);
+            System.out.println(name + "Kucing bosan energy berkurang sedikit" + energy);
         }
         
         public void makanIkan(){
