@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         Pet pet = new Pet("Kucing", 50, 50, 50, 50);
-        Food food = new Food("Bone", 10, 5);
+        Food food = new Food("Fish", 10, 5);
 
         Scanner scanner = new Scanner(System.in);
         int pilihan;
