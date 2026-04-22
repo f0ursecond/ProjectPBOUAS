@@ -15,7 +15,7 @@ public class Main {
         int pilihan;
 
         do {
-            System.out.println("\n=== Kondisi Hewan ===");
+            System.out.println("\n========= Kondisi Hewan =========");
             pet.showStatus();
             System.out.println("\nPilih aksi:");
             System.out.println("1. Beri makan");
@@ -23,7 +23,10 @@ public class Main {
             System.out.println("3. Tidur");
             System.out.println("4. Time Pass");
             System.out.println("0. Keluar");
+            System.out.println("==================================");
+            System.out.println("");
             System.out.print("Pilihan Anda: ");
+            System.out.println("\n");
             while (!scanner.hasNextInt()) {
                 System.out.print("Masukkan angka yang valid: ");
                 scanner.next();
