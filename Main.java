@@ -26,7 +26,6 @@ public class Main {
             System.out.println("==================================");
             System.out.println("");
             System.out.print("Pilihan Anda: ");
-            System.out.println("\n");
             while (!scanner.hasNextInt()) {
                 System.out.print("Masukkan angka yang valid: ");
                 scanner.next();
@@ -36,25 +35,25 @@ public class Main {
             switch (pilihan) {
                 case 1:
                     pet.feed(food);
-                    System.out.println("Kamu memberi makan peliharaanmu.");
+                    System.out.println("\nKamu memberi makan peliharaanmu.");
                     break;
                 case 2:
                     pet.play();
-                    System.out.println("Kamu bermain dengan peliharaanmu.");
+                    System.out.println("\nKamu bermain dengan peliharaanmu.");
                     break;
                 case 3:
                     pet.sleep();
-                    System.out.println("Kamu membiarkan peliharaanmu tidur.");
+                    System.out.println("\nKamu membiarkan peliharaanmu tidur.");
                     break;
                 case 4:
                     pet.timePasses();
-                    System.out.println("Waktu berlalu...");
+                    System.out.println("\nWaktu berlalu...");
                     break;
                 case 0:
-                    System.out.println("Keluar dari permainan. Sampai jumpa!");
+                    System.out.println("\nKeluar dari permainan. Sampai jumpa!");
                     break;
                 default:
-                    System.out.println("Pilihan tidak valid!");
+                    System.out.println("\nPilihan tidak valid!");
             }
         } while (pilihan != 0);
 

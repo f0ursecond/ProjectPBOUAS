@@ -16,6 +16,10 @@ public class Food {
         return nutritionValue;
     }
 
+    public int getTastiness(){
+        return tastiness;
+    }
+
     public String getName() {
         return name;
     }

@@ -31,6 +31,7 @@ public class Pet {
 
         hunger = valAtt(hunger - f.getNutritionValue());
         energy = valAtt(energy + 5);
+        happiness = valAtt(happiness + f.getTastiness());
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
