@@ -1,11 +1,12 @@
 package food;
 
 public class DryFood extends Food{
-    private DryFood(String name, int nutrition , int taste){
+    public DryFood(String name, int nutrition , int taste){
         super(name, nutrition, taste);
     }
 
     public static DryFood Ikan(){
+        
         return new DryFood("ikan",10,10);
     }
 

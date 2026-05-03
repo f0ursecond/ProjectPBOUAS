@@ -1,23 +1,25 @@
 package pet;
 
-public class Cat extends Pet {
+import food.Food;
+
+public class Cat extends Pet  {
     public Cat(String name){
-        super(name, 100, 100, 100, 100);        
+        super(name,50,50,50,50);        
     }
         @Override
         public void timePasses(){
             super.timePasses();
-            energy =+3;
-            // System.out.println(name + "Kucing bosan energy berkurang sedikit" + energy);
+            energy = valAtt(energy + 3);
         }
 
-        
-        
-        // public void makanIkan(){
-        //     energy += 20;
-        //     hunger += 10;
-        //     System.out.println(name + " ikan diberikan, energi bertambah =" + energy);
-        // }
+        @Override
+        public void feed(Food food){
+            super.feed(food);
+            if(food.getName().equalsIgnoreCase("ikan")){
+                hunger = valAtt(hunger - 10);
+                happiness = valAtt(happiness + 10);
+            }
+        }
 }
 
 

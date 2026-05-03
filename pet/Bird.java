@@ -1,19 +1,29 @@
 package pet;
 
+import food.Food;
+
  public class Bird extends Pet {
     public Bird(String name){
-        super(name, 100, 100, 100, 100);        
+        super(name, 50,50,50,50);        
     }
         @Override
         public void timePasses(){
             super.timePasses();
-            energy =+3;
-            // energy -= 5;
-            // System.out.println(name + " terbangg sangat aktif, energi terkuras cepat!! sisa: " + energy);
+            energy = valAtt(energy - 5);
         }
-        // public void feed(){
-        //     hunger += 10;
-        //     energy += 10;
-        //     System.out.println(name + " makan biji, tingkat energy dan hunger sisa: " + hunger + energy);
-        // }
+
+        public void feed(Food food){
+            super.feed(food);
+            energy = valAtt(energy - 3);
+        }
+
+        public void sleep(){
+            super.sleep();
+            energy = valAtt(energy - 5);
+        }
+
+        public void play(){
+            super.play();
+            energy = valAtt(energy - 5);
+        }
 }

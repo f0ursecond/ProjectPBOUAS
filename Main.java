@@ -63,6 +63,7 @@ public class Main {
                 System.out.println("2. Play");
                 System.out.println("3. Sleep");
                 System.out.println("4. Status");
+                System.out.println("5. Time Pass");
                 System.out.println("0. Kembali");
 
                 System.out.print("Pilih aksi: ");
@@ -115,6 +116,7 @@ public class Main {
                 } 
                 else if (aksi == 5) {
                     myPet.timePasses();
+                    System.out.println("Besok......");
                 }
                 else if (aksi == 0) {
                     System.out.println("Kembali ke menu utama...");

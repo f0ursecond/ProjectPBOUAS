@@ -1,7 +1,7 @@
 package food;
 
 public class Treat extends Food{
-    private Treat(String name, int nutrition , int taste){
+    public Treat(String name, int nutrition , int taste){
         super(name, nutrition, taste);
     }
 
