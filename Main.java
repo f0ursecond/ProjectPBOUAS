@@ -105,25 +105,28 @@ public class Main {
                         switch (pilihMakanan) {
                             case 1:
                                 makanan = DryFood.Ikan();
+                                System.out.println("\nMemberi makan Ikan");
                                 break;
                             case 2:
                                 makanan = DryFood.Dimsum();
+                                System.out.println("\nMemberi makan Dimsum");
                                 break;
                             case 3:
                                 makanan = WetFood.Air();
+                                System.out.println("\nMemberi Minum Air");
                                 break;
                             case 4:
                                 makanan = WetFood.Esteh();
+                                System.out.println("\nMemberi Minum Es Teh");
                                 break;
                             case 5:
                                 makanan = Treat.Obat1();
+                                System.out.println("\nMemberi Obat");
                                 break;
                             default:
                                 System.out.println("\nPilihan tidak valid.");
                                 continue;
                         }
-
-                        System.out.println("\nMemberi makan...");
                         myPet.feed(makanan);
                     } 
                     else if (aksi == 2) {

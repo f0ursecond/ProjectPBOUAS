@@ -4,7 +4,7 @@ import food.Food;
 
 public class Dog extends Pet {
     public Dog(String name){
-            super(name, 100, 100, 100, 100);        
+            super(name, 50, 70, 50, 50);        
         }    
             @Override
             public void feed(Food food){
