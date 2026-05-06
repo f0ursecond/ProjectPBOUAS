@@ -16,7 +16,6 @@ public class Cat extends Pet  {
         public void feed(Food food){
             super.feed(food);
             if(food.getName().equalsIgnoreCase("ikan")){
-                hunger = valAtt(hunger - 10);
                 happiness = valAtt(happiness + 10);
             }
         }

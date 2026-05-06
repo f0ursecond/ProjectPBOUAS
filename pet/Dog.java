@@ -23,4 +23,10 @@ public class Dog extends Pet {
                 super.timePasses();
                 happiness = valAtt(happiness - 10);
             }
+
+            @Override
+            public void play(){
+                super.play();
+                happiness = valAtt(happiness + 10);
+            }
 }
