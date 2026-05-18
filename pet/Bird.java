@@ -16,6 +16,7 @@ import food.Food;
         public void feed(Food food){
             super.feed(food);
             energy = valAtt(energy - 3);
+            hunger = valAtt(hunger + 5);
         }
 
         @Override
