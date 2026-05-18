@@ -30,11 +30,15 @@ public class Pet {
     public void feed(Food food) {
 
         hunger = valAtt(hunger - food.getNutritionValue());
-        energy = valAtt(energy + 5);
+        energy = valAtt(energy + 10 );
         happiness = valAtt(happiness + food.getTastiness());
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
+        }
+
+        if(hunger == 0) {
+            health = valAtt(health + 5);
         }
 
         if (energy <= 15) {
@@ -43,9 +47,9 @@ public class Pet {
     }
 
     public void play() {
-        happiness = valAtt(happiness + 10);
-        energy = valAtt(energy - 10);
         hunger = valAtt(hunger + 10);
+        energy = valAtt(energy - 10);
+        happiness = valAtt(happiness + 10);
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
@@ -57,8 +61,9 @@ public class Pet {
     }
 
     public void sleep() {
-        energy = valAtt(energy + 20);
         hunger = valAtt(hunger + 10);
+        energy = valAtt(energy + 10);
+        happiness = valAtt(happiness + 10);
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
@@ -71,8 +76,8 @@ public class Pet {
 
     public void timePasses() {
         hunger = valAtt(hunger + 10);
+        energy = valAtt(energy - 10);
         happiness = valAtt(happiness - 5);
-        energy = valAtt(energy - 5);
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
@@ -81,6 +86,10 @@ public class Pet {
         if (energy <= 15) {
             hunger = valAtt(hunger + 5);
         }
+    }
+
+    public void makeSound() {
+        System.out.println("SOUND!!!!");
     }
 
     public void showStatus() {

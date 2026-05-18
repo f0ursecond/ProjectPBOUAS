@@ -146,6 +146,9 @@ public class Main {
                         System.out.println("\nHari berlalu...");
                         System.out.println("Besok......");
                     }
+                    else if (aksi == 6) {
+                        myPet.makeSound();
+                    }
                     else if (aksi == 0) {
                         System.out.println("\nKembali ke menu utama...");
                         break;
