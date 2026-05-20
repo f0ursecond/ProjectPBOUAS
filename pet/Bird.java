@@ -5,7 +5,7 @@ import rules.Rules;
 
 public class Bird extends Pet {
     public Bird(String name){
-        super(name,50,100,100,50);        
+        super(name,50,50,50,50);        
     }
         @Override
         public void timePasses(){

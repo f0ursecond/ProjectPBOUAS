@@ -5,7 +5,7 @@ import rules.Rules;
 
 public class Dog extends Pet {
     public Dog(String name){
-            super(name,50,100,100,50);        
+            super(name,50,50,50,50);        
         }    
             @Override
             public void feed(Food food){
