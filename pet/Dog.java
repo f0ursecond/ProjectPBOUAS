@@ -5,7 +5,7 @@ import rules.Rules;
 
 public class Dog extends Pet {
     public Dog(String name){
-            super(name, 50, 70, 50, 50);        
+            super(name,50,100,100,50);        
         }    
             @Override
             public void feed(Food food){
@@ -28,7 +28,7 @@ public class Dog extends Pet {
             @Override
             public void timePasses(){
                 int happinessAwal = happiness;
-                super.timePasses(food);
+                super.timePasses();
                 int potongan = Rules.cepat(195 - happinessAwal);
                 //Perhuitungan happines beda karena anjing mudah kesepian (timepasses = tidak bermain dengan waktu lama)
                 
@@ -38,7 +38,7 @@ public class Dog extends Pet {
             @Override
             public void play(){
                 int happinessAwal = happiness;
-                super.play(food);
+                super.play();
                 int potongan = Rules.cepat(175 - happinessAwal);
                 
                 happiness = valAtt(happinessAwal + potongan);

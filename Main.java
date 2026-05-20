@@ -80,6 +80,7 @@ public class Main {
                     System.out.println("||  3. Sleep                                 ||");
                     System.out.println("||  4. Stat Pet                              ||");
                     System.out.println("||  5. Time Pass                             ||");
+                    System.out.println("||  6. Make Sound                            ||");
                     System.out.println("||  0. Kembali                               ||");
                     System.out.println("||===========================================||");
 
@@ -147,6 +148,7 @@ public class Main {
                         System.out.println("Besok......");
                     }
                     else if (aksi == 6) {
+                        System.out.println("\nMengeluarkan suara...");
                         myPet.makeSound();
                     }
                     else if (aksi == 0) {

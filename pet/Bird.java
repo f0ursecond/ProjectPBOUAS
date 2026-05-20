@@ -3,9 +3,9 @@ package pet;
 import food.Food;
 import rules.Rules;
 
- public class Bird extends Pet {
+public class Bird extends Pet {
     public Bird(String name){
-        super(name, 50,50,70,50);        
+        super(name,50,100,100,50);        
     }
         @Override
         public void timePasses(){
@@ -38,7 +38,7 @@ import rules.Rules;
 
         @Override
         public void play(){
-             int energyAwal = energy;
+            int energyAwal = energy;
             super.play();
             int potongan = Rules.cepat(175 - energyAwal);
             energy = valAtt(energyAwal - potongan);
