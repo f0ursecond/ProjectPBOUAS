@@ -37,11 +37,11 @@ public class Dog extends Pet {
 
             @Override
             public void play(){
-                int happinessAwal = happiness;
+                // int happinessAwal = happiness;
                 super.play();
-                int potongan = Rules.cepat(175 - happinessAwal);
+                // int potongan = Rules.cepat(175 - happinessAwal);
                 
-                happiness = valAtt(happinessAwal + potongan);
+                // happiness = valAtt(happinessAwal + potongan);
 
                 System.out.println("bermain fetch");
             }

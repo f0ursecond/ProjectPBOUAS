@@ -17,11 +17,11 @@ public class Cat extends Pet  {
 
         @Override
         public void sleep(){
-            int energyAwal = energy;
+            // int energyAwal = energy;
             super.sleep();
-            int potongan = Rules.lambat(180 - energyAwal);
+            // int potongan = Rules.lambat(180 - energyAwal);
         
-            energy = valAtt(energyAwal - potongan);
+            // energy = valAtt(energyAwal - potongan);
         }
 
         @Override

@@ -38,16 +38,16 @@ public class Bird extends Pet {
 
         @Override
         public void play(){
-            int energyAwal = energy;
+            // int energyAwal = energy;
             super.play();
-            int potongan = Rules.cepat(175 - energyAwal);
-            energy = valAtt(energyAwal - potongan);
+            // int potongan = Rules.cepat(175 - energyAwal);
+            // energy = valAtt(energyAwal - potongan);
 
             System.out.println("Terbang di kamar");
         }
 
         @Override
             public void makeSound(){
-                System.out.println("Get yo ass down");
+                System.out.println("Cuitttt");
             }
 }

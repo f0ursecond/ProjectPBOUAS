@@ -8,10 +8,23 @@ import pet.Pet;
 import food.DryFood;
 import food.WetFood;
 import food.Treat;
+import time.Time;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
+
+
+        System.out.println("Memulai hitung mundur...");
+        
+        
+        Time.countdown(); 
+        
+        int sisaWaktu = Time.getCurrentTime(); 
+        System.out.println("Nilai currentTime saat ini adalah: " + sisaWaktu);
+
+
+        /* 
 
         Scanner Input = new Scanner(System.in);
         
@@ -172,5 +185,7 @@ public class Main {
         } 
         
         Input.close();
+
+        */
     }
 }
