@@ -98,6 +98,20 @@ public class Pet {
         System.out.println("Happiness: " + happiness + "/100 " + createBar(happiness));
         System.out.println("Energy: " + energy + "/100 " + createBar(energy));
         System.out.println("Health: " + health + "/100 " + createBar(health));
+        
+        if (isDead()) {
+            System.out.println("STATUS: [MATI] - Game Over untuk pet ini.");
+        } else if (isHungryMax()) {
+            System.out.println("STATUS: [KELAPARAN] - Harus segera diberi makan!");
+        }
+    }
+
+    public boolean isDead() {
+        return health <= 0;
+    }
+
+    public boolean isHungryMax() {
+        return hunger >= 100;
     }
 
     private String createBar(int value) {

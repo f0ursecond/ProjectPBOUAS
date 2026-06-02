@@ -13,18 +13,7 @@ import time.Time;
 public class Main {
 
     public static void main(String[] args) throws InterruptedException {
-
-
-        System.out.println("Memulai hitung mundur...");
         
-        
-        Time.countdown(); 
-        
-        int sisaWaktu = Time.getCurrentTime(); 
-        System.out.println("Nilai currentTime saat ini adalah: " + sisaWaktu);
-
-
-        /* 
 
         Scanner Input = new Scanner(System.in);
         
@@ -81,6 +70,10 @@ public class Main {
                     }
                 }
                 
+                // Memulai timer otomatis (1 menit total, interval 5 detik untuk testing)
+                Time.startAutoTimePass(myPet, 80, 5);
+
+
                 System.out.println("\n--- Statistik Awal ---");
                 myPet.showStatus();
                 
@@ -92,13 +85,27 @@ public class Main {
                     System.out.println("||  2. Play                                  ||");
                     System.out.println("||  3. Sleep                                 ||");
                     System.out.println("||  4. Stat Pet                              ||");
-                    System.out.println("||  5. Time Pass                             ||");
+                    System.out.println("||  5. Info Timer (Auto)                     ||");
                     System.out.println("||  6. Make Sound                            ||");
                     System.out.println("||  0. Kembali                               ||");
                     System.out.println("||===========================================||");
 
                     System.out.print("Pilih aksi: ");
                     int aksi = Input.nextInt();
+
+                    if (myPet.isDead()) {
+                        if (aksi != 0 && aksi != 4 && aksi != 5) {
+                            System.out.println("\n[Peringatan] Pet kamu sudah mati. Kamu tidak bisa melakukan aksi ini.");
+                            continue;
+                        }
+                    }
+
+                    if (myPet.isHungryMax() && !myPet.isDead()) {
+                        if (aksi != 1 && aksi != 4 && aksi != 5 && aksi != 0) {
+                            System.out.println("\n[Peringatan] Pet sangat lapar! Kamu hanya bisa memberi makan (Feed).");
+                            continue;
+                        }
+                    }
 
                     if (aksi == 1) {
                         System.out.println("\n||===========================================||");
@@ -156,9 +163,8 @@ public class Main {
                         myPet.showStatus();
                     } 
                     else if (aksi == 5) {
-                        myPet.timePasses();
-                        System.out.println("\nHari berlalu...");
-                        System.out.println("Besok......");
+                        System.out.println("\nWaktu berjalan otomatis di background.");
+                        System.out.println("Status pet akan terupdate setiap 5 menit.");
                     }
                     else if (aksi == 6) {
                         System.out.println("\nMengeluarkan suara...");
@@ -185,7 +191,5 @@ public class Main {
         } 
         
         Input.close();
-
-        */
     }
 }
