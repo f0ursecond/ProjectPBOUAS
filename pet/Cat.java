@@ -7,21 +7,35 @@ public class Cat extends Pet  {
         super(name,50,50,50,50);        
     }
         @Override
+        protected int valAtt(int value){
+            if (value < 0) 
+                return 0;
+            if (value > 100)
+                return 100;
+        return value;
+        }
+
+        @Override
         public void timePasses(){
             int energyAwal = energy;
-            super.timePasses();
+        
+            hunger = valAtt(hunger + 10);
+            energy = valAtt(energy - 10);
+            happiness = valAtt(happiness - 5);
+            if (hunger >= 90) health = valAtt(health - 5);
+            if (energy <= 15) hunger = valAtt(hunger + 5);
+
             int potongan = Rules.lambat(140 - energyAwal);
-            //Perhitugan kucing berbeda karena Waktu tidur yang lama
             energy = valAtt(energyAwal - potongan);
         }
 
         @Override
         public void sleep(){
-            // int energyAwal = energy;
-            super.sleep();
-            // int potongan = Rules.lambat(180 - energyAwal);
-        
-            // energy = valAtt(energyAwal - potongan);
+            hunger = valAtt(hunger + 10);
+            energy = valAtt(energy + 10);
+            happiness = valAtt(happiness + 10);
+            if (hunger >= 90) health = valAtt(health - 5);
+            if (energy <= 15) hunger = valAtt(hunger + 5);
         }
 
         @Override
@@ -43,8 +57,15 @@ public class Cat extends Pet  {
 
         @Override
         public void feed(Food food){
-            super.feed(food);
-            if(food.getName().equalsIgnoreCase("ikan")){
+            hunger = valAtt(hunger - food.getHungerReduction());
+            energy = valAtt(energy + 10);
+            happiness = valAtt(happiness + food.getHappinessBoost());
+
+            if (hunger >= 90) health = valAtt(health - 5);
+            if (hunger == 0) health = valAtt(health + 5);
+            if (energy <= 15) hunger = valAtt(hunger + 5);
+
+            if (food.getName().equalsIgnoreCase("ikan")) {
                 happiness = valAtt(happiness + 10);
             }
         }

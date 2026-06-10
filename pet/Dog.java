@@ -8,31 +8,62 @@ public class Dog extends Pet {
             super(name,50,50,50,50);        
         }    
             @Override
+            protected int valAtt(int value){
+                if (value < 0) 
+                    return 0;
+                if (value > 100)
+                    return 100;
+                return value;
+            }
+
+            @Override
             public void feed(Food food){
-                int happinessAwal = happiness;
-                super.feed(food);
-                int potongan = Rules.cepat(175 - happinessAwal);
-                
-                happiness = valAtt(happinessAwal - potongan);    
+                int energyAwal = energy;
+            
+                hunger = valAtt(hunger - food.getHungerReduction());
+                energy = valAtt(energy + 10);
+                happiness = valAtt(happiness + food.getHappinessBoost());
+
+                if (hunger >= 90) health = valAtt(health - 5);
+                if (hunger == 0) health = valAtt(health + 5);
+                if (energy <= 15) hunger = valAtt(hunger + 5);
+
+                int potongan = Rules.cepat(175 - energyAwal);
+                energy = valAtt(energyAwal - potongan);
+                hunger = valAtt(hunger + 5);    
             }
 
             @Override
             public void sleep(){
-                int happinessAwal = happiness;
-                super.sleep();
-                int potongan = Rules.cepat(175 - happinessAwal);
+                int energyAwal = energy;
                 
-                happiness = valAtt(happinessAwal - potongan);
+                hunger = valAtt(hunger + 10);
+                energy = valAtt(energy + 10);
+                happiness = valAtt(happiness + 10);
+
+                if (hunger >= 90) health = valAtt(health - 5);
+                if (energy <= 15) hunger = valAtt(hunger + 5);
+
+                int potongan = Rules.cepat(175 - energyAwal);
+                energy = valAtt(energyAwal - potongan);
             }
 
             @Override
             public void timePasses(){
-                int happinessAwal = happiness;
-                super.timePasses();
-                int potongan = Rules.cepat(195 - happinessAwal);
-                //Perhuitungan happines beda karena anjing mudah kesepian (timepasses = tidak bermain dengan waktu lama)
+                int energyAwal = energy;
+                int hungerAwal = hunger;
                 
-                happiness = valAtt(happinessAwal - potongan);
+                hunger = valAtt(hunger + 10);
+                energy = valAtt(energy - 10);
+                happiness = valAtt(happiness - 5);
+
+                if (hunger >= 90) health = valAtt(health - 5);
+                if (energy <= 15) hunger = valAtt(hunger + 5);
+
+                int potongan = Rules.cepat(175 - energyAwal);
+                int tambahan = Rules.cepat(175 - hungerAwal);
+                energy = valAtt(energyAwal - potongan);
+                hunger = valAtt(energyAwal + tambahan);
             }
 
             @Override

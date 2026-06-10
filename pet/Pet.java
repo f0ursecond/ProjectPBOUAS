@@ -18,61 +18,7 @@ public abstract class Pet {
         this.energy = energy;
         this.health = health;
     }
-
-    protected int valAtt(int value){
-        if (value < 0) 
-            return 0;
-        if (value > 100)
-            return 100;
-        return value;
-    }
-
-    public void feed(Food food) {
-
-        hunger = valAtt(hunger - food.getHungerReduction());
-        energy = valAtt(energy + 10 );
-        happiness = valAtt(happiness + food.getHappinessBoost());
-
-        if (hunger >= 90) {
-            health = valAtt(health - 5);
-        }
-
-        if(hunger == 0) {
-            health = valAtt(health + 5);
-        }
-
-        if (energy <= 15) {
-            hunger = valAtt(hunger + 5);
-        }
-    }
-
-    public void sleep() {
-        hunger = valAtt(hunger + 10);
-        energy = valAtt(energy + 10);
-        happiness = valAtt(happiness + 10);
-
-        if (hunger >= 90) {
-            health = valAtt(health - 5);
-        }
-
-        if (energy <= 15) {
-            hunger = valAtt(hunger + 5);
-        }
-    }
-
-    public void timePasses() {
-        hunger = valAtt(hunger + 10);
-        energy = valAtt(energy - 10);
-        happiness = valAtt(happiness - 5);
-
-        if (hunger >= 90) {
-            health = valAtt(health - 5);
-        }
-
-        if (energy <= 15) {
-            hunger = valAtt(hunger + 5);
-        }
-    }
+    
 
     public void showStatus() {
         System.out.println("Nama : " + name);
@@ -105,6 +51,11 @@ public abstract class Pet {
     public abstract void play();
     public abstract void makeSound();
     public abstract String getSpecies();
+    protected abstract int valAtt(int value);
+    public abstract void feed(Food food);
+    public abstract void sleep();
+    public abstract void timePasses();
+    
 
 }
 
