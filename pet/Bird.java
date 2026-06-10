@@ -39,7 +39,14 @@ public class Bird extends Pet {
         @Override
         public void play(){
             // int energyAwal = energy;
-            super.play();
+            
+            // Menggantikan super.play()
+            hunger = valAtt(hunger + 10);
+            energy = valAtt(energy - 10);
+            happiness = valAtt(happiness + 10);
+            if (hunger >= 90) health = valAtt(health - 5);
+            if (energy <= 15) hunger = valAtt(hunger + 5);
+
             // int potongan = Rules.cepat(175 - energyAwal);
             // energy = valAtt(energyAwal - potongan);
 
@@ -50,4 +57,9 @@ public class Bird extends Pet {
             public void makeSound(){
                 System.out.println("Cuitttt");
             }
+
+        @Override
+        public String getSpecies() {    
+            return "Burung";
+        }
 }

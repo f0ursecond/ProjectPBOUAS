@@ -27,12 +27,16 @@ public class Cat extends Pet  {
         @Override
         public void play(){
             int energyAwal = energy;
-            super.play();
+            hunger = valAtt(hunger + 10);
+            energy = valAtt(energy - 10);
+            happiness = valAtt(happiness + 10);
+            if (hunger >= 90) health = valAtt(health - 5);
+            if (energy <= 15) hunger = valAtt(hunger + 5);
+
             int potongan = Rules.lambat(180 - energyAwal);
             
             energy = valAtt(energyAwal - potongan);
             happiness = valAtt(happiness + 5);
-
 
             System.out.println("Kucing Bermain Bola Benang");
         }
@@ -48,6 +52,11 @@ public class Cat extends Pet  {
         @Override
         public void makeSound(){
             System.out.println("Miawww");
+        }
+
+        @Override
+        public String getSpecies() {
+            return "Kucing";
         }
 }
 

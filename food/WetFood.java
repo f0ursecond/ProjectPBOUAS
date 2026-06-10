@@ -2,7 +2,7 @@ package food;
 
 public class WetFood extends Food{
     public WetFood(String name, int nutrition , int taste){
-         super(name, nutrition, taste);
+        super(name, nutrition, taste);
     }
 
     public static WetFood Air(){
@@ -11,5 +11,15 @@ public class WetFood extends Food{
 
     public static WetFood Esteh(){
         return new WetFood("Esteh",10,10);
+    }
+
+    @Override
+    public int getHungerReduction() {
+        return getNutritionValue();
+    }
+
+    @Override
+    public int getHappinessBoost() {
+        return getTastiness() + 5;
     }
 }

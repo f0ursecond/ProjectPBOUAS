@@ -13,4 +13,14 @@ public class DryFood extends Food{
     public static DryFood Dimsum(){
         return  new DryFood("Dimsum",10,10);
     }
+
+    @Override
+    public int getHungerReduction() {
+        return getNutritionValue() + 5;
+    }
+
+    @Override
+    public int getHappinessBoost() {
+        return getTastiness();
+    }
 }

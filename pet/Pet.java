@@ -3,7 +3,7 @@ package pet;
 import food.Food;
 
 
-public class Pet {
+public abstract class Pet { 
 
     protected String name;
     protected int hunger;
@@ -29,9 +29,9 @@ public class Pet {
 
     public void feed(Food food) {
 
-        hunger = valAtt(hunger - food.getNutritionValue());
+        hunger = valAtt(hunger - food.getHungerReduction());
         energy = valAtt(energy + 10 );
-        happiness = valAtt(happiness + food.getTastiness());
+        happiness = valAtt(happiness + food.getHappinessBoost());
 
         if (hunger >= 90) {
             health = valAtt(health - 5);
@@ -39,20 +39,6 @@ public class Pet {
 
         if(hunger == 0) {
             health = valAtt(health + 5);
-        }
-
-        if (energy <= 15) {
-            hunger = valAtt(hunger + 5);
-        }
-    }
-
-    public void play() {
-        hunger = valAtt(hunger + 10);
-        energy = valAtt(energy - 10);
-        happiness = valAtt(happiness + 10);
-
-        if (hunger >= 90) {
-            health = valAtt(health - 5);
         }
 
         if (energy <= 15) {
@@ -88,10 +74,6 @@ public class Pet {
         }
     }
 
-    public void makeSound() {
-        System.out.println("SOUND!!!!");
-    }
-
     public void showStatus() {
         System.out.println("Nama : " + name);
         System.out.println("Hunger: " + hunger + "/100 " + createBar(hunger));
@@ -119,6 +101,10 @@ public class Pet {
         int empty = 10 - filled;
         return "[" + "#".repeat(filled) + "-".repeat(empty) + "]";
     }
+    
+    public abstract void play();
+    public abstract void makeSound();
+    public abstract String getSpecies();
 
 }
 

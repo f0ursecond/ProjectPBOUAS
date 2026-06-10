@@ -1,6 +1,6 @@
 package food;
 
-public class Food {
+public abstract class Food {
 
     private String name;
     private int nutritionValue;
@@ -23,6 +23,9 @@ public class Food {
     public String getName() {
         return name;
     }
+
+    public abstract int getHungerReduction();
+    public abstract int getHappinessBoost();
 }
 
 

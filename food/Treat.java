@@ -8,4 +8,14 @@ public class Treat extends Food{
     public static Treat Obat1(){
         return new Treat("Obat1",10,10);
     }
+
+    @Override
+    public int getHungerReduction() {
+        return getNutritionValue() - 5;
+    }
+
+    @Override
+    public int getHappinessBoost() {
+        return getTastiness() + 10;
+    }
 }
