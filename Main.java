@@ -12,7 +12,7 @@ import time.Time;
 
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args){
         
 
         Scanner Input = new Scanner(System.in);
@@ -129,16 +129,16 @@ public class Main {
                                 System.out.println("\nMemberi makan Ikan");
                                 break;
                             case 2:
-                                makanan = DryFood.Dimsum();
-                                System.out.println("\nMemberi makan Dimsum");
+                                makanan = DryFood.Snack();
+                                System.out.println("\nMemberi makan Snack");
                                 break;
                             case 3:
                                 makanan = WetFood.Air();
                                 System.out.println("\nMemberi Minum Air");
                                 break;
                             case 4:
-                                makanan = WetFood.Esteh();
-                                System.out.println("\nMemberi Minum Es Teh");
+                                makanan = WetFood.Susu();
+                                System.out.println("\nMemberi Minum Susu");
                                 break;
                             case 5:
                                 makanan = Treat.Obat1();
@@ -164,7 +164,7 @@ public class Main {
                     } 
                     else if (aksi == 5) {
                         System.out.println("\nWaktu berjalan otomatis di background.");
-                        System.out.println("Status pet akan terupdate setiap 5 menit.");
+                        System.out.println("Status pet akan terupdate setiap 5 Detik.");
                     }
                     else if (aksi == 6) {
                         System.out.println("\nMengeluarkan suara...");
