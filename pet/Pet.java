@@ -1,10 +1,7 @@
 package pet;
-
 import food.Food;
 
-
 public abstract class Pet { 
-
     private String name;
     private int hunger;
     private int happiness;
@@ -25,19 +22,14 @@ public abstract class Pet {
         return value;
     }
 
-    // Get Set Att
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
-
     public int getHunger() { return hunger; }
     public void setHunger(int hunger) { this.hunger = valAtt(hunger); }
-
     public int getHappiness() { return happiness; }
     public void setHappiness(int happiness) { this.happiness = valAtt(happiness); }
-
     public int getEnergy() { return energy; }
     public void setEnergy(int energy) { this.energy = valAtt(energy); }
-
     public int getHealth() { return health; }
     public void setHealth(int health) { this.health = valAtt(health); }
 
@@ -61,13 +53,8 @@ public abstract class Pet {
         }
     }
 
-    public boolean isDead() {
-        return health <= 0;
-    }
-
-    public boolean isHungryMax() {
-        return hunger >= 100;
-    }
+    public boolean isDead() { return health <= 0; }
+    public boolean isHungryMax() { return hunger >= 100; }
 
     private String createBar(int value) {
         int filled = value / 10;
@@ -76,14 +63,9 @@ public abstract class Pet {
     }
     
     public abstract void feed(Food food);
-    public abstract void play();
+    public abstract void play(int gameChoice); 
     public abstract void makeSound();
     public abstract void sleep();
     public abstract void timePasses();
     public abstract String getSpecies();
-    
-
 }
-
-
-
