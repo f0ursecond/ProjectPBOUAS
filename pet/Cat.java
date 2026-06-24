@@ -42,6 +42,9 @@ public class Cat extends Pet  {
 
     @Override
     public void timePasses(){
+        if (time.Time.getCurrentTime() % 10 == 0) {
+            getUmur().tambahUmur();
+        }
         int energyAwal = getEnergy();
         setHunger(getHunger() + 10);
         setHappiness(getHappiness() - 5);

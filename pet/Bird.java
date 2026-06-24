@@ -42,6 +42,9 @@ public class Bird extends Pet {
 
     @Override
     public void timePasses(){
+        if (time.Time.getCurrentTime() % 10 == 0) {
+            getUmur().tambahUmur();
+        }
         int energyAwal = getEnergy();
         int hungerAwal = getHunger();
         setHappiness(getHappiness() - 5);

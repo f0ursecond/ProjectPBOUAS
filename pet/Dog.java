@@ -61,6 +61,9 @@ public class Dog extends Pet {
 
     @Override
     public void timePasses(){
+        if (time.Time.getCurrentTime() % 10 == 0) {
+            getUmur().tambahUmur();
+        }
         int happinessAwal = getHappiness();
         setHunger(getHunger() + 10);
         setEnergy(getEnergy() - 5);

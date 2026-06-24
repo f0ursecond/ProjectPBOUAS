@@ -1,15 +1,18 @@
 package pet;
 import food.Food;
+import umur.Umur;
 
 public abstract class Pet { 
     private String name;
     private int hunger;
     private int happiness;
+    private Umur Umur;
     private int energy;
     private int health;
 
     public Pet(String name, int hunger, int happiness, int energy, int health) {
         this.name = name;
+        this.Umur = new Umur(0);
         setHunger(hunger);
         setHappiness(happiness);
         setEnergy(energy);
@@ -39,8 +42,12 @@ public abstract class Pet {
         if (getEnergy() <= 15) setHunger(getHunger() + 5);
     }
 
+    public Umur getUmur() { return Umur; }
+    public void setUmur(int umur) { this.Umur = new Umur(umur); }
+
     public void showStatus() {
         System.out.println("Nama : " + name);
+        System.out.println("Umur : " + Umur.getTotalUmur() + " (" + Umur.getFaseLife() + ")");
         System.out.println("Hunger: " + hunger + "/100 " + createBar(hunger));
         System.out.println("Happiness: " + happiness + "/100 " + createBar(happiness));
         System.out.println("Energy: " + energy + "/100 " + createBar(energy));

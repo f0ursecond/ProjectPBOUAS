@@ -37,9 +37,29 @@ public class Main {
                 Pet myPet = null;
                 Inventory playerInventory = null;
                 int startSec = 0;
+                String saveFile = "";
+
+                // MEMILIH PET AWAL
+                System.out.println("\n||===========================================||");
+                System.out.println("||                  PILIH PET                ||");
+                System.out.println("||===========================================||");
+                System.out.println("||  1. Pet 1                                 ||");
+                System.out.println("||  2. Pet 2                                 ||");
+                System.out.println("||===========================================||");
+                System.out.print("Pilih pet (1/2): ");
+                int slot = Input.nextInt();
+
+                if (slot == 1) {
+                    saveFile = "savegame1.txt";
+                } else if (slot == 2) {
+                    saveFile = "savegame2.txt";
+                } else {
+                    System.out.println("\nInput salah. Kembali ke menu utama.");
+                    continue;
+                }
 
                 if (pilih == 2) {
-                    GameState savedState = SaveManager.loadGame("savegame.txt");
+                    GameState savedState = SaveManager.loadGame(saveFile);
                     if (savedState == null) {
                         continue;
                     }
@@ -87,7 +107,6 @@ public class Main {
                     startSec = 0;
                 }
                 
-                // Mulai Timer
                 Time.startAutoTimePass(myPet, 80, 5, startSec);
 
                 System.out.println("\n--- Statistik Awal ---");
@@ -107,18 +126,19 @@ public class Main {
                     System.out.println("||  7. Game Center (Cari Koin)               ||");
                     System.out.println("||  8. Toko Mainan                           ||");
                     System.out.println("||  9. Save Game                             ||");
+                    System.out.println("|| 10. Ganti Pet (Ganti Pet)                 ||");
                     System.out.println("||  0. Kembali                               ||");
                     System.out.println("||===========================================||");
 
                     System.out.print("Pilih aksi: ");
                     int aksi = Input.nextInt();
 
-                    if (myPet.isDead() && aksi != 0 && aksi != 4 && aksi != 5 && aksi != 9) {
+                    if (myPet.isDead() && aksi != 0 && aksi != 4 && aksi != 5 && aksi != 9 && aksi != 10) {
                         System.out.println("\n[Peringatan] Pet kamu sudah mati. Kamu tidak bisa melakukan aksi ini.");
                         continue;
                     }
 
-                    if (myPet.isHungryMax() && !myPet.isDead() && aksi != 1 && aksi != 4 && aksi != 5 && aksi != 9 && aksi != 0) {
+                    if (myPet.isHungryMax() && !myPet.isDead() && aksi != 1 && aksi != 4 && aksi != 5 && aksi != 9 && aksi != 10 && aksi != 0) {
                         System.out.println("\n[Peringatan] Pet sangat lapar! Kamu hanya bisa memberi makan (Feed).");
                         continue;
                     }
@@ -174,7 +194,6 @@ public class Main {
                         System.out.print("Pilih game (1-5): ");
                         int pilihGame = Input.nextInt();
                         
-                        // Cek apakah input valid dan mainan dimiliki
                         if ((pilihGame >= 1 && pilihGame <= 3) || playerInventory.punyaMainan(pilihGame)) {
                             System.out.println("\nSedang bermain...");
                             myPet.play(pilihGame);
@@ -205,7 +224,38 @@ public class Main {
                         Toko.bukaToko(playerInventory, Input);
                     }
                     else if (aksi == 9) {
-                        SaveManager.saveGame("savegame.txt", myPet, playerInventory, Time.getCurrentTime());
+                        SaveManager.saveGame(saveFile, myPet, playerInventory, Time.getCurrentTime());
+                    }
+                    else if (aksi == 10) {
+                        // FITUR GANTI PET DI DALAM MENU AKSI
+                        System.out.println("\nMenyimpan pet saat ini secara otomatis...");
+                        SaveManager.saveGame(saveFile, myPet, playerInventory, Time.getCurrentTime());
+                        
+                        System.out.print("Pilih pet tujuan (1/2): ");
+                        int gantiSlot = Input.nextInt();
+                        String fileTujuan = "";
+                        
+                        if (gantiSlot == 1) {
+                            fileTujuan = "savegame1.txt";
+                        } else if (gantiSlot == 2) {
+                            fileTujuan = "savegame2.txt";
+                        } else {
+                            System.out.println("Pilihan salah. Batal berganti pet.");
+                            continue;
+                        }
+
+                        GameState savedState = SaveManager.loadGame(fileTujuan);
+                        if (savedState != null) {
+                            Time.stopAutoTimePass(); // Hentikan timer pet sebelumnya
+                            myPet = savedState.getPet();
+                            playerInventory = savedState.getInventory();
+                            saveFile = fileTujuan; // Update posisi slot saat ini
+                            Time.startAutoTimePass(myPet, 80, 5, savedState.getCurrentTime());
+                            System.out.println("\nBerhasil berganti pet!");
+                            myPet.showStatus();
+                        } else {
+                            System.out.println("\n[Info] Slot kosong. Kamu harus keluar (0) dan pilih 'Bermain Baru' untuk membuat pet di slot ini.");
+                        }
                     }
                     else if (aksi == 0) {
                         System.out.println("\nKembali ke menu utama...");

@@ -23,6 +23,8 @@ public class SaveManager {
             writer.newLine();
             writer.write(String.valueOf(pet.getHealth()));
             writer.newLine();
+            writer.write(String.valueOf(pet.getUmur().getTotalUmur()));
+            writer.newLine();
             writer.write(String.valueOf(inventory.getKoin()));
             writer.newLine();
             writer.write(String.valueOf(inventory.punyaMainan(4))); // puzzle
@@ -45,6 +47,7 @@ public class SaveManager {
             int happiness = Integer.parseInt(reader.readLine());
             int energy = Integer.parseInt(reader.readLine());
             int health = Integer.parseInt(reader.readLine());
+            int umur = Integer.parseInt(reader.readLine());
             int koin = Integer.parseInt(reader.readLine());
             boolean punyaPuzzle = Boolean.parseBoolean(reader.readLine());
             boolean punyaMusik = Boolean.parseBoolean(reader.readLine());
@@ -66,6 +69,7 @@ public class SaveManager {
             pet.setHappiness(happiness);
             pet.setEnergy(energy);
             pet.setHealth(health);
+            pet.setUmur(umur);
 
             Inventory inventory = new Inventory(koin, punyaPuzzle, punyaMusik);
 
