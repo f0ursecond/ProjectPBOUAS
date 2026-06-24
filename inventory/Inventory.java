@@ -11,6 +11,12 @@ public class Inventory {
         this.punyaMusik = false;
     }
 
+    public Inventory(int koin, boolean punyaPuzzle, boolean punyaMusik) {
+        this.koin = koin;
+        this.punyaPuzzle = punyaPuzzle;
+        this.punyaMusik = punyaMusik;
+    }
+
     public int getKoin() { return koin; }
     
     public void tambahKoin(int jumlah) { 

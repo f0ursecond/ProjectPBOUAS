@@ -1,0 +1,10 @@
+Kucing
+aadlwa
+50
+85
+58
+50
+30
+false
+false
+80

@@ -13,6 +13,8 @@ import time.Time;
 import inventory.Inventory;
 import shop.Toko;
 import game.GameCenter;
+import game.GameState;
+import game.SaveManager;
 
 public class Main {
     public static void main(String[] args){
@@ -23,58 +25,70 @@ public class Main {
             System.out.println("||               PET SIMULATOR               ||");
             System.out.println("||===========================================||");
             System.out.println("||                                           ||");
-            System.out.println("||  1. Bermain                               ||");
+            System.out.println("||  1. Bermain Baru                          ||");
+            System.out.println("||  2. Load Game                             ||");
             System.out.println("||  0. Keluar                                ||");
             System.out.println("||                                           ||");
             System.out.println("||===========================================||");
             System.out.print("Pilih menu: ");
             int pilih = Input.nextInt();
 
-            if (pilih == 1) {
+            if (pilih == 1 || pilih == 2) {
                 Pet myPet = null;
+                Inventory playerInventory = null;
+                int startSec = 0;
 
-                while (true) {
-                    System.out.println("\n||===========================================||");
-                    System.out.println("||           PILIH HEWAN PELIHARAAN          ||");
-                    System.out.println("||===========================================||");
-                    System.out.println("||  1. Kucing                                ||");
-                    System.out.println("||  2. Anjing                                ||");
-                    System.out.println("||  3. Burung                                ||");
-                    System.out.println("||===========================================||");
-                    
-                    System.out.print("Masukkan nomor hewan: ");
-                    int hewan = Input.nextInt();
-                    Input.nextLine(); 
-                    
-                    if (hewan >= 1 && hewan <= 3) {
-                        System.out.print("Silahkan masukkan nama: ");
-                        String name = Input.nextLine();
-                    
-                        switch(hewan){
-                            case 1:
-                                myPet = new Cat(name);
-                                System.out.println("\nSelamat datang, " + name + " (Kucing)");
-                                break;
-                            case 2:
-                                myPet = new Dog(name);
-                                System.out.println("\nSelamat datang, " + name + " (Anjing)");
-                                break;
-                            case 3:
-                                myPet = new Bird(name);
-                                System.out.println("\nSelamat datang, " + name + " (Burung)");
-                                break;
-                        }
-                        break;
-                    } else {
-                        System.out.println("\nInputan salah. Silakan pilih 1, 2, atau 3.");
+                if (pilih == 2) {
+                    GameState savedState = SaveManager.loadGame("savegame.txt");
+                    if (savedState == null) {
+                        continue;
                     }
+                    myPet = savedState.getPet();
+                    playerInventory = savedState.getInventory();
+                    startSec = savedState.getCurrentTime();
+                } else {
+                    while (true) {
+                        System.out.println("\n||===========================================||");
+                        System.out.println("||           PILIH HEWAN PELIHARAAN          ||");
+                        System.out.println("||===========================================||");
+                        System.out.println("||  1. Kucing                                ||");
+                        System.out.println("||  2. Anjing                                ||");
+                        System.out.println("||  3. Burung                                ||");
+                        System.out.println("||===========================================||");
+                        
+                        System.out.print("Masukkan nomor hewan: ");
+                        int hewan = Input.nextInt();
+                        Input.nextLine(); 
+                        
+                        if (hewan >= 1 && hewan <= 3) {
+                            System.out.print("Silahkan masukkan nama: ");
+                            String name = Input.nextLine();
+                        
+                            switch(hewan){
+                                case 1:
+                                    myPet = new Cat(name);
+                                    System.out.println("\nSelamat datang, " + name + " (Kucing)");
+                                    break;
+                                case 2:
+                                    myPet = new Dog(name);
+                                    System.out.println("\nSelamat datang, " + name + " (Anjing)");
+                                    break;
+                                case 3:
+                                    myPet = new Bird(name);
+                                    System.out.println("\nSelamat datang, " + name + " (Burung)");
+                                    break;
+                            }
+                            break;
+                        } else {
+                            System.out.println("\nInputan salah. Silakan pilih 1, 2, atau 3.");
+                        }
+                    }
+                    playerInventory = new Inventory(50);
+                    startSec = 0;
                 }
                 
                 // Mulai Timer
-                Time.startAutoTimePass(myPet, 80, 5);
-
-                // Inisialisasi Inventory (Koin awal: 50)
-                Inventory playerInventory = new Inventory(50);
+                Time.startAutoTimePass(myPet, 80, 5, startSec);
 
                 System.out.println("\n--- Statistik Awal ---");
                 myPet.showStatus();
@@ -92,18 +106,19 @@ public class Main {
                     System.out.println("||  6. Make Sound                            ||");
                     System.out.println("||  7. Game Center (Cari Koin)               ||");
                     System.out.println("||  8. Toko Mainan                           ||");
+                    System.out.println("||  9. Save Game                             ||");
                     System.out.println("||  0. Kembali                               ||");
                     System.out.println("||===========================================||");
 
                     System.out.print("Pilih aksi: ");
                     int aksi = Input.nextInt();
 
-                    if (myPet.isDead() && aksi != 0 && aksi != 4 && aksi != 5) {
+                    if (myPet.isDead() && aksi != 0 && aksi != 4 && aksi != 5 && aksi != 9) {
                         System.out.println("\n[Peringatan] Pet kamu sudah mati. Kamu tidak bisa melakukan aksi ini.");
                         continue;
                     }
 
-                    if (myPet.isHungryMax() && !myPet.isDead() && aksi != 1 && aksi != 4 && aksi != 5 && aksi != 0) {
+                    if (myPet.isHungryMax() && !myPet.isDead() && aksi != 1 && aksi != 4 && aksi != 5 && aksi != 9 && aksi != 0) {
                         System.out.println("\n[Peringatan] Pet sangat lapar! Kamu hanya bisa memberi makan (Feed).");
                         continue;
                     }
@@ -189,8 +204,12 @@ public class Main {
                     else if (aksi == 8) {
                         Toko.bukaToko(playerInventory, Input);
                     }
+                    else if (aksi == 9) {
+                        SaveManager.saveGame("savegame.txt", myPet, playerInventory, Time.getCurrentTime());
+                    }
                     else if (aksi == 0) {
                         System.out.println("\nKembali ke menu utama...");
+                        Time.stopAutoTimePass();
                         break;
                     } 
                     else {
