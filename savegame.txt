@@ -1,0 +1,11 @@
+Anjing
+fjr
+100
+0
+45
+40
+2
+30
+false
+false
+29

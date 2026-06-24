@@ -3,6 +3,9 @@ package time;
 import java.util.Timer;
 import java.util.TimerTask;
 import pet.Pet;
+import pet.Dog;
+import pet.Cat;
+import pet.Bird;
 
 public class Time {
 
@@ -16,23 +19,28 @@ public class Time {
      * @param totalDurationSec Kapan game/timer berakhir
      * @param intervalSec Setiap berapa detik timePasses dipanggil
      */
-    public static void startAutoTimePass(
-        Pet pet,
-        int totalDurationSec,
-        int intervalSec
-    ) {
-        startAutoTimePass(pet, totalDurationSec, intervalSec, 0);
+    public static void startAutoTimePass(Pet pet) {
+        startAutoTimePass(pet, 0);
     }
 
-    public static void startAutoTimePass(
-        Pet pet,
-        int totalDurationSec,
-        int intervalSec,
-        int startTime
-    ) {
+    public static void startAutoTimePass(Pet pet, int startTime) {
+        int intervalSec = 5;
+        int totalDurationSec = 80;
+        if (pet instanceof Dog) {
+            totalDurationSec = 120;
+            intervalSec = 10;
+        } else if (pet instanceof Cat) {
+            totalDurationSec = 140;
+            intervalSec = 15;
+        } else if (pet instanceof Bird) {
+            totalDurationSec = 85;
+            intervalSec = 20;
+        }
+
         stopAutoTimePass();
         currentTime = startTime; // Mulai dari detik ke-startTime
         totalLimit = totalDurationSec;
+        final int finalIntervalSec = intervalSec;
         activeTimer = new Timer(true);
 
         TimerTask task = new TimerTask() {
@@ -42,7 +50,7 @@ public class Time {
                     currentTime++; // Bertambah setiap detik (Tick)
 
                     // Terjadi timePasses setiap kelipatan interval
-                    if (currentTime % intervalSec == 0) {
+                    if (currentTime % finalIntervalSec == 0) {
                         pet.timePasses();
                         System.out.println(
                             "\n[Sistem] Detik ke-" +
