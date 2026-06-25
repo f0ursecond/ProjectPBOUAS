@@ -63,6 +63,7 @@ public class Bird extends Pet {
         int potongan = Rules.cepat(175 - energyAwal);
         setEnergy(energyAwal - potongan);
         setHunger(getHunger() + 5);
+        setHealth(getHealth() + 6);
         checkConditions();
     }
 

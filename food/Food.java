@@ -11,6 +11,7 @@ public abstract class Food {
         this.name = name;
         this.nutritionValue = nutritionValue;
         this.tastiness = tastiness;
+        this.health = health;
     }
 
     public int getNutritionValue() {
